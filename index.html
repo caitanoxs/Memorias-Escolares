@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fim de Uma Era — Portfólio de Davi Caitano</title>
+    <meta name="description" content="Portfólio pessoal de Davi Caitano — Memórias do Ensino Médio e 17 redações de Língua Portuguesa. Colégio Estadual Padre Claudio Morelli.">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Previne o "Flash of Unstyled Content" (FOUC) no Dark Mode -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Tela de Loading -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-inner">
+            <div class="loader-text">Carregando memórias...</div>
+            <div class="loader-progress"><span class="loader-bar"></span></div>
+            <div class="loader-pct" id="loader-pct">0%</div>
+        </div>
+    </div>
+
+    <!-- Efeito de Ruído (Noise) -->
+    <div class="noise-overlay"></div>
+
+    <!-- Header Fixo -->
+    <header class="header">
+        <a href="#hero" class="logo">Portfólio<span>.</span></a>
+        <nav class="nav-menu">
+            <a href="#timeline">Memórias</a>
+            <a href="#portfolio">Redações</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Mudar tema">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-decoration top-left">2014</div>
+            <div class="hero-decoration bottom-right">2026</div>
+
+            <h1 id="hero-title" class="hero-title">Fim de Uma Era</h1>
+
+            <p id="hero-subtitle" class="hero-subtitle">
+                Doze anos de história condensados em pixels, palavras e memórias.<br>
+                <em>Do prézinho ao último sinal do Ensino Médio.</em>
+            </p>
+
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- Marquee Editorial -->
+        <div class="editorial-marquee">
+            <div class="marquee-track">
+                <span>FIM DE UMA ERA ✦ 2014–2026 ✦</span>
+                <span>Davi Caitano ✦ Colégio Estadual Padre Claudio Morelli ✦</span>
+                <span>17 Redações ✦ Memórias Escolares ✦</span>
+                <span>FIM DE UMA ERA ✦ 2014–2026 ✦</span>
+                <span>Davi Caitano ✦ Colégio Estadual Padre Claudio Morelli ✦</span>
+                <span>17 Redações ✦ Memórias Escolares ✦</span>
+            </div>
+        </div>
+
+        <!-- Timeline Section (Scrapbook / Memórias Escolares) -->
+        <section id="timeline" class="timeline-section">
+            <h2 class="section-title reveal">Minha Trajetória</h2>
+            <p class="section-subtitle reveal">Um resgate cronológico dos momentos inesquecíveis da vida escolar.</p>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-pin">
+                    <div class="timeline-track" id="timeline-track">
+                        <!-- Memórias inseridas via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-nav">
+                <button class="nav-year active" data-fase="pre-escola">Pré-escola</button>
+                <button class="nav-year" data-fase="fundamental">Fundamental</button>
+                <button class="nav-year" data-fase="ensino-medio">Ensino Médio</button>
+            </div>
+        </section>
+
+        <!-- Portfólio de Redações -->
+        <section id="portfolio" class="portfolio-section">
+            <h2 class="section-title reveal">Portfólio de Redações</h2>
+            <p class="section-subtitle reveal">17 produções textuais que contam a história dos meus estudos.</p>
+
+            <div class="search-container reveal">
+                <input type="text" id="search-input" class="search-input" placeholder="Buscar por tema ou título...">
+                <span class="search-hint" id="search-hint"></span>
+            </div>
+
+            <div class="tag-filters reveal" id="tag-filters">
+                <button class="tag-btn active" data-filter="all">Todas</button>
+                <button class="tag-btn" data-filter="ENEM">ENEM</button>
+                <button class="tag-btn" data-filter="Agro">Agro</button>
+                <button class="tag-btn" data-filter="Sociedade">Sociedade</button>
+                <button class="tag-btn" data-filter="Tecnologia">Tecnologia</button>
+                <button class="tag-btn" data-filter="Meio Ambiente">Meio Ambiente</button>
+            </div>
+
+            <div class="sort-controls reveal">
+                <label for="sort-select">Ordenar por:</label>
+                <select id="sort-select" class="sort-select">
+                    <option value="default">Ordem original</option>
+                    <option value="titulo">Título (A→Z)</option>
+                    <option value="tempo">Tempo de leitura</option>
+                </select>
+            </div>
+
+            <!-- Grid de Redações gerado via JS -->
+            <div id="redacoes-grid" class="redacoes-grid">
+                <!-- Os cards serão inseridos aqui pelo JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Imersivo -->
+    <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close" aria-label="Fechar modal">✕</button>
+
+            <div class="modal-header">
+                <h3 id="modal-title" class="modal-title">Título da Redação</h3>
+                <p id="modal-tema" class="modal-tema">Tema</p>
+                <div class="modal-meta">
+                    <span id="modal-tempo" class="modal-tempo">Leitura: 0 min</span>
+                </div>
+            </div>
+
+            <div id="modal-text" class="modal-text" role="textbox" readonly></div>
+            <div class="modal-page-indicator" id="modal-page-indicator">Redação 1 de 17</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">"O fim do Ensino Médio não é um ponto final — é uma vírgula gigante na minha história." — Davi Caitano</p>
+        <p class="footer-credit">Colégio Estadual Padre Claudio Morelli • 2024–2026 • Feito com código, café e nostalgia</p>
+    </footer>
+
+    <!-- Bibliotecas via CDN (GSAP e Lenis) com fallback -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <script>
+        // Fallback: se Lenis ou GSAP não carregarem, garante que o conteúdo continue acessível
+        window.addEventListener('load', () => {
+            if (typeof Lenis === 'undefined') {
+                document.documentElement.style.overflow = 'auto';
+                document.body.style.overflow = 'auto';
+                const loader = document.getElementById('page-loader');
+                if (loader) loader.remove();
+            }
+        });
+    </script>
+
+    <!-- JavaScript Principal -->
+    <script src="js/script.js"></script>
+</body>
+</html>
